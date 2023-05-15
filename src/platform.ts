@@ -15,6 +15,7 @@ export enum Runtime {
     Windows_86 = <any>'Windows_86',
     Windows_64 = <any>'Windows_64',
     OSX = <any>'OSX',
+    OSX_ARM64 = <any>'OSX_ARM64',
     CentOS_7 = <any>'CentOS_7',
     Debian_8 = <any>'Debian_8',
     Fedora_23 = <any>'Fedora_23',
@@ -174,6 +175,9 @@ export function getRuntimeId(platform: string, architecture: string, distributio
                 // Note: We return the El Capitan RID for Sierra
                 return Runtime.OSX;
             }
+            else {
+                return Runtime.OSX_ARM64;
+            }
 
             throw new ArchitectureNotSupportedError(`Unsupported macOS architecture: ${architecture}`, platform, architecture);
 
@@ -219,6 +223,8 @@ export function getRuntimeDisplayName(runtime: Runtime): string {
             return 'Windows';
         case Runtime.OSX:
             return 'OSX';
+        case Runtime.OSX_ARM64:
+            return 'OSX_ARM64';
         case Runtime.CentOS_7:
             return 'Linux';
         case Runtime.Debian_8:
